@@ -10,7 +10,13 @@
 
     <div class="d-flex justify-content-end mt-3">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-secondary">Edit</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="editTaskDialog.showModal()"
+        >
+          Edit
+        </button>
         <button
           type="button"
           class="btn btn-outline-secondary"
@@ -39,4 +45,14 @@
       No
     </button>
   </div>
+</dialog>
+
+<dialog class="border-1 border-secondary-subtle rounded w-100" #editTaskDialog>
+  @if (editTaskDialog.open) {
+  <mbau-task-form
+    [task]="task()"
+    (formCancel)="editTaskDialog.close()"
+    (formSubmit)="handleSubmitTask($event)"
+  />
+  }
 </dialog>

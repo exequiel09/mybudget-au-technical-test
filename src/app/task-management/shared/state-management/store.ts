@@ -17,6 +17,7 @@ import {
   entityConfig,
   removeEntity,
   type SelectEntityId,
+  updateEntity,
   withEntities,
 } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -195,6 +196,37 @@ export const TasksStore = signalStore(
             catchError(() => {
               store._toastsService.show({
                 message: 'Unable to delete the task. Please try again later',
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+
+              return EMPTY;
+            })
+          )
+        )
+      )
+    ),
+
+    updateTask: rxMethod<{ id: string; payload: RawTask }>(
+      pipe(
+        exhaustMap(({ id, payload }) =>
+          store._taskHttp.updateTask(id, payload).pipe(
+            tap(() => {
+              patchState(
+                store,
+                updateEntity({ id, changes: payload }, tasksEntityConfig)
+              );
+
+              store._toastsService.show({
+                message: 'Task Updated',
+                classname: 'bg-success text-light',
+                delay: 3000,
+              });
+            }),
+
+            catchError(() => {
+              store._toastsService.show({
+                message: 'Unable to update task. Please try again later',
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });

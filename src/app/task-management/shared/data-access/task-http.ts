@@ -27,6 +27,15 @@ export class TaskHttp {
     return this._http.post<Task>(`/api/tasks`, payload);
   }
 
+  updateTask(id: string, rawTask: RawTask) {
+    const payload: Omit<Task, 'id' | 'created_at'> = {
+      ...rawTask,
+      updated_at: new Date().toISOString(),
+    };
+
+    return this._http.patch<Task>(`/api/tasks/${id}`, payload);
+  }
+
   deleteTask(id: string) {
     return this._http.delete(`/api/tasks/${id}`);
   }

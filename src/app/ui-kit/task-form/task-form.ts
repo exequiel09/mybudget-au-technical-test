@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
   output,
   signal,
@@ -51,6 +52,19 @@ export class TaskForm {
   readonly isStatusInvalid = computed(
     () => this.form.status().touched() && this.form.status().invalid()
   );
+
+  constructor() {
+    effect(() => {
+      const task = this.task();
+      if (typeof task !== 'undefined') {
+        this.form().value.set({
+          title: task.title,
+          description: task.description,
+          status: task.status,
+        });
+      }
+    });
+  }
 
   handleSubmit(event: Event) {
     event.preventDefault();

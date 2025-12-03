@@ -6,24 +6,25 @@ import {
   type ElementRef,
   inject,
   Injector,
-  input,
+  model,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import type { Task } from '@mbau/dtos';
+import type { RawTask, Task } from '@mbau/dtos';
 import { TasksStore } from '@mbau/task-management-state';
-import { StatusBadge } from '@mbau/ui-kit';
+import { StatusBadge, TaskForm } from '@mbau/ui-kit';
 
 @Component({
   selector: 'mbau-task-details',
-  imports: [DatePipe, StatusBadge],
+  imports: [DatePipe, StatusBadge, TaskForm],
   templateUrl: './task-details.html',
   styleUrl: './task-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskDetails {
-  readonly task = input.required<Task>();
+  readonly task = model.required<Task>();
 
   private readonly _injector = inject(Injector);
   private readonly _router = inject(Router);
@@ -31,15 +32,21 @@ export class TaskDetails {
 
   private readonly _confirmDialog =
     viewChild.required<ElementRef<HTMLDialogElement>>('confirmDialog');
+  private readonly _editTaskDialog =
+    viewChild.required<ElementRef<HTMLDialogElement>>('editTaskDialog');
 
   constructor() {
     // Task will never be undefined unless deleted so we check if the task is already removed from the entity store
     effect(() => {
-      const task = this._tasksStore.tasksEntityMap()[this.task().id];
+      const task = this._tasksStore.tasksEntityMap()[untracked(this.task).id];
 
       if (typeof task === 'undefined') {
         this._router.navigate(['/']);
+        return;
       }
+
+      this.task.set(task);
+      this._editTaskDialog().nativeElement.close();
     });
   }
 
@@ -49,5 +56,12 @@ export class TaskDetails {
 
   handleDelete() {
     this._tasksStore.deleteTask(this.task, { injector: this._injector });
+  }
+
+  handleSubmitTask(task: RawTask) {
+    this._tasksStore.updateTask(
+      { id: this.task().id, payload: task },
+      { injector: this._injector }
+    );
   }
 }
