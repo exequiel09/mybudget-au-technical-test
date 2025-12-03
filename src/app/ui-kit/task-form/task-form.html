@@ -1,0 +1,65 @@
+<section aria-labelledby="task-form-title">
+  <h2 id="task-form-title">@if (task()) { Edit Task } @else { New Task }</h2>
+  <form (submit)="handleSubmit($event)">
+    <div class="mb-3">
+      <label for="mbau_task-title_txt" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="mbau_task-title_txt"
+        [field]="form.title"
+        [class.is-invalid]="isTitleInvalid()"
+      />
+
+      @if (isTitleInvalid() && form.title().errors().length > 0) {
+      <div class="invalid-feedback">{{ form.title().errors()[0].message }}</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="mbau_task-description_ta" class="form-label"
+        >Description</label
+      >
+      <textarea
+        class="form-control"
+        id="description_ta"
+        rows="3"
+        [field]="form.description"
+        [class.is-invalid]="isDescriptionInvalid()"
+      ></textarea>
+      @if (isDescriptionInvalid() && form.description().errors().length > 0) {
+      <div class="invalid-feedback">
+        {{ form.description().errors()[0].message }}
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="mbau_task-status_ta" class="form-label">Status</label>
+
+      <select
+        class="form-select form-select-sm"
+        id="mbau_task-status_ta"
+        [field]="form.status"
+        [class.is-invalid]="isStatusInvalid()"
+      >
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+    </div>
+
+    <div class="d-flex gap-2 justify-content-end">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="formCancel.emit()"
+      >
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary">
+        @if (task()) { Save } @else { Create }
+      </button>
+    </div>
+  </form>
+</section>

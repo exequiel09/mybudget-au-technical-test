@@ -2,7 +2,13 @@
   <section class="container" aria-labelledby="task-list-heading">
     <h2 id="task-list-heading" class="visually-hidden">List of Tasks</h2>
 
-    <div class="row mt-3 justify-content-end">
+    <div class="row mt-3 justify-content-between">
+      <div class="col-5 com-sm-7">
+        <button type="button" class="btn btn-primary" (click)="handleAddTask()">
+          Add Task
+        </button>
+      </div>
+
       <div class="col-7 col-sm-5">
         <mbau-sort-control
           [value]="tasksStore.sortBy()"
@@ -39,3 +45,12 @@
     }
   </section>
 </main>
+
+<dialog class="border-1 border-secondary-subtle rounded w-100" #addTaskDialog>
+  @if (addTaskDialog.open) {
+  <mbau-task-form
+    (formCancel)="addTaskDialog.close()"
+    (formSubmit)="handleSubmitTask($event)"
+  />
+  }
+</dialog>

@@ -1,18 +1,27 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  type ElementRef,
+  inject,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, type Params, Router } from '@angular/router';
 
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap/pagination';
 import { tap } from 'rxjs';
 
+import type { RawTask } from '@mbau/dtos';
 import { type SortOptionKey, TasksStore } from '@mbau/task-management-state';
+import { TaskForm } from '@mbau/ui-kit';
 
 import { SortControl } from '../../components/sort-control/sort-control';
 import { TaskCard } from '../../components/task-card/task-card';
 
 @Component({
   selector: 'mbau-task-list',
-  imports: [NgbPaginationModule, SortControl, TaskCard],
+  imports: [NgbPaginationModule, SortControl, TaskCard, TaskForm],
   templateUrl: './task-list.html',
   styleUrl: './task-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +31,9 @@ export class TaskList {
 
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
+
+  private readonly _addTaskDialog =
+    viewChild.required<ElementRef<HTMLDialogElement>>('addTaskDialog');
 
   constructor() {
     this._activatedRoute.queryParams
@@ -45,6 +57,20 @@ export class TaskList {
         takeUntilDestroyed()
       )
       .subscribe();
+
+    effect(
+      () =>
+        this.tasksStore.totalItems() &&
+        this._addTaskDialog().nativeElement.close()
+    );
+  }
+
+  handleAddTask() {
+    this._addTaskDialog().nativeElement.showModal();
+  }
+
+  handleSubmitTask(task: RawTask) {
+    this.tasksStore.addTask(task);
   }
 
   handlePageChange(page: number) {

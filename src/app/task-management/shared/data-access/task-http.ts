@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
+import type { RawTask, Task } from '@mbau/dtos';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +15,16 @@ export class TaskHttp {
 
   getTaskDetailEndpoint(id: string) {
     return `/api/tasks/${id}`;
+  }
+
+  addTask(rawTask: RawTask) {
+    const payload: Omit<Task, 'id'> = {
+      ...rawTask,
+      created_at: new Date().toISOString(),
+      updated_at: null,
+    };
+
+    return this._http.post<Task>(`/api/tasks`, payload);
   }
 
   deleteTask(id: string) {

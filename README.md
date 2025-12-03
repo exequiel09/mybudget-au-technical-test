@@ -137,6 +137,10 @@ pnpm exec nx g @nx/angular:component \
 pnpm exec nx g @nx/angular:directive \
     --path=src/app/layout/directives/router-based-control \
     --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/ui-kit/task-form/task-form \
+    --skipTests=true
 ```
 
 ## Useful links

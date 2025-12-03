@@ -23,7 +23,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { catchError, EMPTY, exhaustMap, pipe, tap } from 'rxjs';
 
 import { TaskHttp } from '@mbau/task-management-data-access';
-import type { Task } from '@mbau/dtos';
+import type { RawTask, Task } from '@mbau/dtos';
 import { ToastService } from '@mbau/toast-notifications';
 import { TaskResponseValidator, TaskValidator } from '@mbau/validators';
 
@@ -149,6 +149,34 @@ export const TasksStore = signalStore(
     setSort(sortBy: SortOptionKey) {
       patchState(store, { sortBy });
     },
+
+    addTask: rxMethod<RawTask>(
+      pipe(
+        exhaustMap((task) =>
+          store._taskHttp.addTask(task).pipe(
+            tap((task) => {
+              patchState(store, addEntity(task, tasksEntityConfig));
+
+              store._toastsService.show({
+                message: 'Task Created',
+                classname: 'bg-success text-light',
+                delay: 3000,
+              });
+            }),
+
+            catchError(() => {
+              store._toastsService.show({
+                message: 'Unable to add task. Please try again later',
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+
+              return EMPTY;
+            })
+          )
+        )
+      )
+    ),
 
     deleteTask: rxMethod<Task>(
       pipe(
