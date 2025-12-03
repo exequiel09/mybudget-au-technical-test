@@ -51,6 +51,10 @@
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
+      "dependsOn": ["serve-backend"],
+      "options": {
+        "proxyConfig": "./src/proxy.conf.json"
+      },
       "configurations": {
         "production": {
           "buildTarget": "mybudget-au-technical-test:build:production"
@@ -60,6 +64,13 @@
         }
       },
       "defaultConfiguration": "development"
+    },
+    "serve-backend": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "options": {
+        "command": "pnpm exec json-server projects/server/db.json"
+      }
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
