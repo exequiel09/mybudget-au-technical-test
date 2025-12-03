@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, type Params, Router } from '@angular/router';
 
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap/pagination';
 import { tap } from 'rxjs';
 
-import { TasksStore } from '@mbau/task-management-state';
+import { type SortOptionKey, TasksStore } from '@mbau/task-management-state';
 
 import { SortControl } from '../../components/sort-control/sort-control';
 import { TaskCard } from '../../components/task-card/task-card';
@@ -30,6 +30,10 @@ export class TaskList {
           const page = +(queryParams['page'] ?? '1');
 
           this.tasksStore.loadListing(page);
+
+          if (typeof queryParams['sort'] !== 'undefined') {
+            this.tasksStore.setSort(queryParams['sort']);
+          }
         }),
 
         takeUntilDestroyed()
@@ -38,12 +42,22 @@ export class TaskList {
   }
 
   handlePageChange(page: number) {
+    this._updateQueryParams({
+      page,
+    });
+  }
+
+  handleSortChange(sortBy: SortOptionKey) {
+    this._updateQueryParams({
+      sort: sortBy,
+    });
+  }
+
+  private _updateQueryParams(params: Params) {
     this._router.navigate([], {
       relativeTo: this._activatedRoute,
       queryParamsHandling: 'merge',
-      queryParams: {
-        page,
-      },
+      queryParams: params,
     });
   }
 }

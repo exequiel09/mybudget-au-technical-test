@@ -27,7 +27,7 @@ import type { Task } from '@mbau/dtos';
 import { ToastService } from '@mbau/toast-notifications';
 import { TaskResponseValidator, TaskValidator } from '@mbau/validators';
 
-import type { TasksStoreDefaultState } from './models';
+import type { SortOptionKey, TasksStoreDefaultState } from './models';
 
 export const selectTaskId: SelectEntityId<Task> = (task: Task) => task.id;
 
@@ -48,6 +48,7 @@ export const TasksStore = signalStore(
     _requestedId: null,
     currentPage: 1,
     pageSize: DEFAULT_PAGE_SIZE,
+    sortBy: 'title',
   }),
 
   withEntities(tasksEntityConfig),
@@ -83,12 +84,25 @@ export const TasksStore = signalStore(
     };
   }),
 
-  withComputed(({ tasksEntities, currentPage, pageSize }) => ({
+  withComputed(({ tasksEntities, currentPage, pageSize, sortBy }) => ({
     currentPageItems: computed(() => {
       const startIndex = (currentPage() - 1) * pageSize();
       const endIndex = startIndex + pageSize();
+      const sortByProp = sortBy();
 
-      return tasksEntities().slice(startIndex, endIndex);
+      return tasksEntities()
+        .sort((taskA, taskB) => {
+          if (sortByProp === 'status') {
+            return taskA.status > taskB.status ? 1 : -1;
+          }
+
+          if (sortByProp === 'date-created') {
+            return taskA.created_at > taskB.created_at ? 1 : -1;
+          }
+
+          return taskA.title > taskB.title ? 1 : -1;
+        })
+        .slice(startIndex, endIndex);
     }),
 
     totalItems: computed(() => tasksEntities().length),
@@ -107,6 +121,10 @@ export const TasksStore = signalStore(
 
     setPage(page: number) {
       patchState(store, { currentPage: page });
+    },
+
+    setSort(sortBy: SortOptionKey) {
+      patchState(store, { sortBy });
     },
 
     deleteTask: rxMethod<Task>(

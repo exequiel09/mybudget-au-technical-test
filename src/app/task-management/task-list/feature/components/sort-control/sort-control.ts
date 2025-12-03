@@ -6,7 +6,7 @@ import {
   output,
 } from '@angular/core';
 
-type SortOptionKey = 'title' | 'status' | 'date-created';
+import type { SortOptionKey } from '@mbau/task-management-state';
 
 const sortOptions: Record<SortOptionKey, string> = {
   title: 'Title',
