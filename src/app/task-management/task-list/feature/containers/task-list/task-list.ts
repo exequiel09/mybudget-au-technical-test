@@ -34,6 +34,12 @@ export class TaskList {
           if (typeof queryParams['sort'] !== 'undefined') {
             this.tasksStore.setSort(queryParams['sort']);
           }
+
+          if (typeof queryParams['search'] !== 'undefined') {
+            const trimmed = queryParams['search'].trim();
+
+            this.tasksStore.setSearch(trimmed.length > 0 ? trimmed : null);
+          }
         }),
 
         takeUntilDestroyed()

@@ -49,6 +49,7 @@ export const TasksStore = signalStore(
     currentPage: 1,
     pageSize: DEFAULT_PAGE_SIZE,
     sortBy: 'title',
+    searchQuery: null,
   }),
 
   withEntities(tasksEntityConfig),
@@ -84,31 +85,49 @@ export const TasksStore = signalStore(
     };
   }),
 
-  withComputed(({ tasksEntities, currentPage, pageSize, sortBy }) => ({
-    currentPageItems: computed(() => {
-      const startIndex = (currentPage() - 1) * pageSize();
-      const endIndex = startIndex + pageSize();
-      const sortByProp = sortBy();
+  withComputed(
+    ({ tasksEntities, currentPage, pageSize, sortBy, searchQuery }) => {
+      const matchedItems = computed(() => {
+        const searchQueryStr = searchQuery();
+        let entities = tasksEntities();
+        if (searchQueryStr !== null) {
+          entities = tasksEntities().filter(
+            (task) => task.title.search(new RegExp(searchQueryStr, 'i')) > -1
+          );
+        }
 
-      return tasksEntities()
-        .sort((taskA, taskB) => {
-          if (sortByProp === 'status') {
-            return taskA.status > taskB.status ? 1 : -1;
-          }
+        return entities;
+      });
 
-          if (sortByProp === 'date-created') {
-            return taskA.created_at > taskB.created_at ? 1 : -1;
-          }
+      return {
+        currentPageItems: computed(() => {
+          const startIndex = (currentPage() - 1) * pageSize();
+          const endIndex = startIndex + pageSize();
+          const sortByProp = sortBy();
 
-          return taskA.title > taskB.title ? 1 : -1;
-        })
-        .slice(startIndex, endIndex);
-    }),
+          return matchedItems()
+            .sort((taskA, taskB) => {
+              if (sortByProp === 'status') {
+                return taskA.status > taskB.status ? 1 : -1;
+              }
 
-    totalItems: computed(() => tasksEntities().length),
+              if (sortByProp === 'date-created') {
+                return taskA.created_at > taskB.created_at ? 1 : -1;
+              }
 
-    totalPages: computed(() => Math.ceil(tasksEntities().length / pageSize())),
-  })),
+              return taskA.title > taskB.title ? 1 : -1;
+            })
+            .slice(startIndex, endIndex);
+        }),
+
+        totalItems: computed(() => matchedItems().length),
+
+        totalPages: computed(() =>
+          Math.ceil(matchedItems().length / pageSize())
+        ),
+      };
+    }
+  ),
 
   withMethods((store) => ({
     loadListing(page = 1, pageSize = DEFAULT_PAGE_SIZE) {
@@ -121,6 +140,10 @@ export const TasksStore = signalStore(
 
     setPage(page: number) {
       patchState(store, { currentPage: page });
+    },
+
+    setSearch(query: string | null) {
+      patchState(store, { searchQuery: query });
     },
 
     setSort(sortBy: SortOptionKey) {

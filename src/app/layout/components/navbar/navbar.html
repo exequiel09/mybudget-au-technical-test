@@ -14,6 +14,8 @@
           type="search"
           placeholder="Search"
           aria-label="Search"
+          [value]="searchQuery()"
+          (keyup)="handleSearch($event)"
         />
       </form>
       } }

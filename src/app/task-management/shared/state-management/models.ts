@@ -7,4 +7,5 @@ export interface TasksStoreDefaultState {
   currentPage: number;
   pageSize: number;
   sortBy: SortOptionKey;
+  searchQuery: string | null;
 }
