@@ -1,0 +1,22 @@
+<nav class="navbar bg-body-tertiary" aria-labelledby="primary-nav-heading">
+  <h2 id="primary-nav-heading" class="visually-hidden">Application Navbar</h2>
+
+  <div class="container-lg">
+    <div class="row w-100">
+      @switch (visibleControl()) { @case ('back') {
+      <div class="col col-12">
+        <a href="#">Back</a>
+      </div>
+      } @default {
+      <form class="col col-12 col-md-6 mx-md-auto" role="search">
+        <input
+          class="form-control w-100"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </form>
+      } }
+    </div>
+  </div>
+</nav>

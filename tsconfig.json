@@ -7,7 +7,8 @@
     "lib": ["es2020", "dom"],
     "paths": {
       "@mbau/dtos": ["./src/app/shared/dtos/index.ts"],
-      "@mbau/validators": ["./src/app/shared/validators/index.ts"]
+      "@mbau/validators": ["./src/app/shared/validators/index.ts"],
+      "@mbau/layout": ["./src/app/layout/index.ts"]
     },
     "isolatedModules": true
   },

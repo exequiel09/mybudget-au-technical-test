@@ -22,6 +22,8 @@ npx create-nx-workspace@latest mybudget-au-technical-test \
     --prefix=mbau \
     --ssr=false \
     --e2eTestRunner=playwright
+
+pnpm exec nx g @nx/angular:component --path=src/app/layout/components/navbar/navbar --style=scss --displayBlock=true --skipTests=true
 ```
 
 ## Installing Packages
