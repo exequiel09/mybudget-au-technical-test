@@ -11,5 +11,8 @@ export const taskDetailsRoutes: Route[] = [
     resolve: {
       task: taskResolver,
     },
+    data: {
+      navbarControl: 'back',
+    },
   },
 ];

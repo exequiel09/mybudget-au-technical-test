@@ -7,5 +7,8 @@ export const taskListRoutes: Route[] = [
     path: '',
     title: 'Home',
     component: TaskList,
+    data: {
+      navbarControl: 'search',
+    },
   },
 ];

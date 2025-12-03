@@ -5,7 +5,10 @@
     <div class="row gx-0 w-100">
       @switch (visibleControl()) { @case ('back') {
       <div class="col col-12">
-        <a href="#">Back</a>
+        <a class="btn px-0 py-1" [routerLink]="['/']">
+          <span class="fs-2 lh-1">&larr;</span>
+          <span>Back</span>
+        </a>
       </div>
       } @default {
       <form class="col col-12 col-md-6 mx-md-auto" role="search">

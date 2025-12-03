@@ -133,6 +133,10 @@ pnpm exec nx g @nx/angular:component \
 pnpm exec nx g @nx/angular:component \
     --path=src/app/ui-kit/status-badge/status-badge \
     --skipTests=true
+
+pnpm exec nx g @nx/angular:directive \
+    --path=src/app/layout/directives/router-based-control \
+    --skipTests=true
 ```
 
 ## Useful links

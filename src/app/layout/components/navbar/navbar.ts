@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  input,
+  model,
   type Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { filter, map, Subject, take, tap, throttleTime } from 'rxjs';
 
@@ -14,7 +14,7 @@ export type NavbarControl = 'search' | 'back';
 
 @Component({
   selector: 'mbau-navbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +22,7 @@ export type NavbarControl = 'search' | 'back';
 export class Navbar {
   readonly searchQuery: Signal<string>;
 
-  readonly visibleControl = input<NavbarControl>('search');
+  readonly visibleControl = model<NavbarControl>('search');
 
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
