@@ -13,13 +13,19 @@ import {
 } from '@ngrx/signals';
 import {
   addEntities,
+  addEntity,
   entityConfig,
   type SelectEntityId,
   withEntities,
 } from '@ngrx/signals/entities';
 
 import type { Task } from '@mbau/dtos';
-import { PaginatedTaskResponseValidator } from '@mbau/validators';
+import {
+  PaginatedTaskResponseValidator,
+  TaskValidator,
+} from '@mbau/validators';
+
+import type { TasksStoreDefaultState } from './models';
 
 export const selectTaskId: SelectEntityId<Task> = (task: Task) => task.id;
 
@@ -32,8 +38,10 @@ export const tasksEntityConfig = entityConfig({
 export const TasksStore = signalStore(
   { providedIn: 'root' },
 
-  withState({
+  withState<TasksStoreDefaultState>({
     _fetchListing: false,
+    _fetchById: false,
+    _requestedId: null,
     currentPage: 1,
     pageSize: 2,
     totalItems: 0,
@@ -42,22 +50,32 @@ export const TasksStore = signalStore(
 
   withEntities(tasksEntityConfig),
 
-  withProps(({ currentPage, pageSize, _fetchListing }) => {
-    const listingResource = httpResource(
-      () =>
-        _fetchListing()
-          ? `/api/tasks?_page=${currentPage()}&_per_page=${pageSize()}`
-          : undefined,
-      {
-        parse: PaginatedTaskResponseValidator.parse,
-      }
-    );
+  withProps(
+    ({ currentPage, pageSize, _fetchListing, _fetchById, _requestedId }) => {
+      const listingResource = httpResource(
+        () =>
+          _fetchListing()
+            ? `/api/tasks?_page=${currentPage()}&_per_page=${pageSize()}`
+            : undefined,
+        {
+          parse: PaginatedTaskResponseValidator.parse,
+        }
+      );
+      const detailsResource = httpResource(
+        () => (_fetchById() ? `/api/tasks/${_requestedId()}` : undefined),
+        {
+          parse: TaskValidator.parse,
+        }
+      );
 
-    return {
-      _listingResource: listingResource,
-      listingResource: listingResource.asReadonly(),
-    };
-  }),
+      return {
+        _detailsResource: detailsResource,
+        detailsResource: detailsResource.asReadonly(),
+        _listingResource: listingResource,
+        listingResource: listingResource.asReadonly(),
+      };
+    }
+  ),
 
   withComputed(({ _listingResource }) => ({
     currentPageItems: computed(() => _listingResource.value()?.data ?? []),
@@ -66,6 +84,10 @@ export const TasksStore = signalStore(
   withMethods((store) => ({
     loadListing(page = 1, pageSize = 2) {
       patchState(store, { _fetchListing: true, currentPage: page, pageSize });
+    },
+
+    getTaskById(id: string) {
+      patchState(store, { _fetchById: true, _requestedId: id });
     },
   })),
 
@@ -82,6 +104,17 @@ export const TasksStore = signalStore(
             totalItems: value.items,
             totalPages: value.pages,
           }));
+        }
+      });
+
+      effect(() => {
+        if (
+          store._detailsResource.status() === 'resolved' &&
+          store._detailsResource.hasValue()
+        ) {
+          const value = store._detailsResource.value();
+
+          patchState(store, addEntity(value, tasksEntityConfig));
         }
       });
     },

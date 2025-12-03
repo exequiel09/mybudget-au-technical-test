@@ -129,6 +129,10 @@ pnpm exec nx g @nx/angular:component \
 pnpm exec nx g @nx/angular:component \
     --path=src/app/task-management/task-list/feature/components/sort-control/sort-control \
     --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/ui-kit/status-badge/status-badge \
+    --skipTests=true
 ```
 
 ## Useful links

@@ -1,19 +1,10 @@
-<section class="card">
+<section class="card" aria-labelledby="task-card-title">
   <div class="card-body">
-    <h3 class="card-title">{{ task().title }}</h3>
+    <h3 id="task-card-title" class="card-title">{{ task().title }}</h3>
   </div>
 
   <div class="card-body d-flex justify-content-between">
-    @let status = task().status;
-
-    <span
-      class="badge"
-      [class.text-bg-warning]="status === 'in-progress'"
-      [class.text-bg-secondary]="status === 'pending'"
-      [class.text-bg-success]="status === 'done'"
-    >
-      {status, select, pending {Pending} done {Done} other {In Progress}}
-    </span>
+    <mbau-status-badge [status]="task().status" />
 
     <a [routerLink]="['/details', task().id]" class="btn btn-outline-secondary"
       >Details</a
