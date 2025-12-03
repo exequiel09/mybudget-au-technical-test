@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { computed, effect } from '@angular/core';
+import { computed, effect, inject } from '@angular/core';
 
 import {
   patchState,
@@ -15,11 +15,16 @@ import {
   addEntities,
   addEntity,
   entityConfig,
+  removeEntity,
   type SelectEntityId,
   withEntities,
 } from '@ngrx/signals/entities';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { catchError, EMPTY, exhaustMap, pipe, tap } from 'rxjs';
 
+import { TaskHttp } from '@mbau/task-management-data-access';
 import type { Task } from '@mbau/dtos';
+import { ToastService } from '@mbau/toast-notifications';
 import {
   PaginatedTaskResponseValidator,
   TaskValidator,
@@ -52,23 +57,32 @@ export const TasksStore = signalStore(
 
   withProps(
     ({ currentPage, pageSize, _fetchListing, _fetchById, _requestedId }) => {
+      const taskHttp = inject(TaskHttp);
       const listingResource = httpResource(
         () =>
           _fetchListing()
-            ? `/api/tasks?_page=${currentPage()}&_per_page=${pageSize()}`
+            ? taskHttp.getTasksEndpoint(currentPage(), pageSize())
             : undefined,
         {
           parse: PaginatedTaskResponseValidator.parse,
         }
       );
       const detailsResource = httpResource(
-        () => (_fetchById() ? `/api/tasks/${_requestedId()}` : undefined),
+        () => {
+          const id = _requestedId();
+
+          return _fetchById() && id !== null
+            ? taskHttp.getTaskDetailEndpoint(id)
+            : undefined;
+        },
         {
           parse: TaskValidator.parse,
         }
       );
 
       return {
+        _toastsService: inject(ToastService),
+        _taskHttp: taskHttp,
         _detailsResource: detailsResource,
         detailsResource: detailsResource.asReadonly(),
         _listingResource: listingResource,
@@ -89,6 +103,34 @@ export const TasksStore = signalStore(
     getTaskById(id: string) {
       patchState(store, { _fetchById: true, _requestedId: id });
     },
+
+    deleteTask: rxMethod<Task>(
+      pipe(
+        exhaustMap((task) =>
+          store._taskHttp.deleteTask(task.id).pipe(
+            tap(() => {
+              patchState(store, removeEntity(task.id, tasksEntityConfig));
+
+              store._toastsService.show({
+                message: 'Task Deleted',
+                classname: 'bg-success text-light',
+                delay: 3000,
+              });
+            }),
+
+            catchError(() => {
+              store._toastsService.show({
+                message: 'Unable to delete the task. Please try again later',
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+
+              return EMPTY;
+            })
+          )
+        )
+      )
+    ),
   })),
 
   withHooks({
