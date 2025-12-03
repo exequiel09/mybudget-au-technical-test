@@ -25,10 +25,7 @@ import { catchError, EMPTY, exhaustMap, pipe, tap } from 'rxjs';
 import { TaskHttp } from '@mbau/task-management-data-access';
 import type { Task } from '@mbau/dtos';
 import { ToastService } from '@mbau/toast-notifications';
-import {
-  PaginatedTaskResponseValidator,
-  TaskValidator,
-} from '@mbau/validators';
+import { TaskResponseValidator, TaskValidator } from '@mbau/validators';
 
 import type { TasksStoreDefaultState } from './models';
 
@@ -40,6 +37,8 @@ export const tasksEntityConfig = entityConfig({
   selectId: selectTaskId,
 });
 
+const DEFAULT_PAGE_SIZE = 2;
+
 export const TasksStore = signalStore(
   { providedIn: 'root' },
 
@@ -48,60 +47,66 @@ export const TasksStore = signalStore(
     _fetchById: false,
     _requestedId: null,
     currentPage: 1,
-    pageSize: 2,
-    totalItems: 0,
-    totalPages: 0,
+    pageSize: DEFAULT_PAGE_SIZE,
   }),
 
   withEntities(tasksEntityConfig),
 
-  withProps(
-    ({ currentPage, pageSize, _fetchListing, _fetchById, _requestedId }) => {
-      const taskHttp = inject(TaskHttp);
-      const listingResource = httpResource(
-        () =>
-          _fetchListing()
-            ? taskHttp.getTasksEndpoint(currentPage(), pageSize())
-            : undefined,
-        {
-          parse: PaginatedTaskResponseValidator.parse,
-        }
-      );
-      const detailsResource = httpResource(
-        () => {
-          const id = _requestedId();
+  withProps(({ _fetchListing, _fetchById, _requestedId }) => {
+    const taskHttp = inject(TaskHttp);
+    const listingResource = httpResource(
+      () => (_fetchListing() ? taskHttp.getTasksEndpoint() : undefined),
+      {
+        parse: TaskResponseValidator.parse,
+      }
+    );
+    const detailsResource = httpResource(
+      () => {
+        const id = _requestedId();
 
-          return _fetchById() && id !== null
-            ? taskHttp.getTaskDetailEndpoint(id)
-            : undefined;
-        },
-        {
-          parse: TaskValidator.parse,
-        }
-      );
+        return _fetchById() && id !== null
+          ? taskHttp.getTaskDetailEndpoint(id)
+          : undefined;
+      },
+      {
+        parse: TaskValidator.parse,
+      }
+    );
 
-      return {
-        _toastsService: inject(ToastService),
-        _taskHttp: taskHttp,
-        _detailsResource: detailsResource,
-        detailsResource: detailsResource.asReadonly(),
-        _listingResource: listingResource,
-        listingResource: listingResource.asReadonly(),
-      };
-    }
-  ),
+    return {
+      _toastsService: inject(ToastService),
+      _taskHttp: taskHttp,
+      _detailsResource: detailsResource,
+      detailsResource: detailsResource.asReadonly(),
+      _listingResource: listingResource,
+      listingResource: listingResource.asReadonly(),
+    };
+  }),
 
-  withComputed(({ _listingResource }) => ({
-    currentPageItems: computed(() => _listingResource.value()?.data ?? []),
+  withComputed(({ tasksEntities, currentPage, pageSize }) => ({
+    currentPageItems: computed(() => {
+      const startIndex = (currentPage() - 1) * pageSize();
+      const endIndex = startIndex + pageSize();
+
+      return tasksEntities().slice(startIndex, endIndex);
+    }),
+
+    totalItems: computed(() => tasksEntities().length),
+
+    totalPages: computed(() => Math.ceil(tasksEntities().length / pageSize())),
   })),
 
   withMethods((store) => ({
-    loadListing(page = 1, pageSize = 2) {
+    loadListing(page = 1, pageSize = DEFAULT_PAGE_SIZE) {
       patchState(store, { _fetchListing: true, currentPage: page, pageSize });
     },
 
     getTaskById(id: string) {
       patchState(store, { _fetchById: true, _requestedId: id });
+    },
+
+    setPage(page: number) {
+      patchState(store, { currentPage: page });
     },
 
     deleteTask: rxMethod<Task>(
@@ -142,10 +147,7 @@ export const TasksStore = signalStore(
         ) {
           const value = store._listingResource.value();
 
-          patchState(store, addEntities(value.data, tasksEntityConfig), () => ({
-            totalItems: value.items,
-            totalPages: value.pages,
-          }));
+          patchState(store, addEntities(value, tasksEntityConfig));
         }
       });
 

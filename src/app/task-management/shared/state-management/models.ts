@@ -4,6 +4,4 @@ export interface TasksStoreDefaultState {
   _requestedId: string | null;
   currentPage: number;
   pageSize: number;
-  totalItems: number;
-  totalPages: number;
 }

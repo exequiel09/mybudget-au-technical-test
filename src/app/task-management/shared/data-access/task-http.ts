@@ -7,8 +7,8 @@ import { inject, Injectable } from '@angular/core';
 export class TaskHttp {
   private readonly _http = inject(HttpClient);
 
-  getTasksEndpoint(page: number, pageSize: number) {
-    return `/api/tasks?_page=${page}&_per_page=${pageSize}`;
+  getTasksEndpoint() {
+    return `/api/tasks`;
   }
 
   getTaskDetailEndpoint(id: string) {
