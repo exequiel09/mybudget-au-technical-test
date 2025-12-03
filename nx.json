@@ -53,5 +53,12 @@
       "unitTestRunner": "vitest"
     }
   },
+  "cli": {
+    "cache": {
+      "enabled": "true",
+      "path": ".cache/ng",
+      "environment": "all"
+    }
+  },
   "defaultProject": "mybudget-au-technical-test"
 }
