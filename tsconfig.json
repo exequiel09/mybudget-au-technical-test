@@ -5,7 +5,10 @@
     "target": "es2022",
     "module": "preserve",
     "lib": ["es2020", "dom"],
-    "paths": {},
+    "paths": {
+      "@mbau/dtos": ["./src/app/shared/dtos/index.ts"],
+      "@mbau/validators": ["./src/app/shared/validators/index.ts"]
+    },
     "isolatedModules": true
   },
   "angularCompilerOptions": {
