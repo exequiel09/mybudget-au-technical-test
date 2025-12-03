@@ -29,6 +29,9 @@ importers:
       '@angular/router':
         specifier: ~21.0.2
         version: 21.0.2(@angular/common@21.0.2(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.0.2(@angular/common@21.0.2(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@ngrx/signals':
+        specifier: ^20.1.0
+        version: 20.1.0(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -1993,6 +1996,15 @@ packages:
       '@angular/localize': ^21.0.0
       '@popperjs/core': ^2.11.8
       rxjs: ^6.5.3 || ^7.4.0
+
+  '@ngrx/signals@20.1.0':
+    resolution: {integrity: sha512-ARAHp5yA131Sw6FEtY8XtYcdGcwW5lgpZaJoDIRxc6i12VO3ZDZYp3M/FQhpIDMDXkXHR+pDqoitrqvzI69aQA==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    peerDependenciesMeta:
+      rxjs:
+        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -9207,6 +9219,13 @@ snapshots:
       '@popperjs/core': 2.11.8
       rxjs: 7.8.2
       tslib: 2.8.1
+
+  '@ngrx/signals@20.1.0(@angular/core@21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/core': 21.0.2(@angular/compiler@21.0.2)(rxjs@7.8.2)(zone.js@0.15.1)
+      tslib: 2.8.1
+    optionalDependencies:
+      rxjs: 7.8.2
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

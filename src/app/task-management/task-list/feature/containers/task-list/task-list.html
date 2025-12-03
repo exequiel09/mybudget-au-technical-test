@@ -1,1 +1,35 @@
-<p>task-list works!</p>
+<main>
+  <section class="container">
+    <h2 class="visually-hidden">List of Tasks</h2>
+
+    <div class="row mt-3 justify-content-end">
+      <div class="col-7 col-sm-5">
+        <mbau-sort-control />
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      @for (task of tasksStore.currentPageItems(); track task.id; let first =
+      $first) {
+      <div
+        class="col-12 col-md-6 col-lg-4"
+        [class.gy-3]="!first"
+        [class.gy-md-0]="tasksStore.currentPageItems().length < 3"
+      >
+        <mbau-task-card [task]="task" />
+      </div>
+      }
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12">
+        <ngb-pagination
+          class="d-flex justify-content-end"
+          [collectionSize]="30"
+          [page]="1"
+          [directionLinks]="false"
+        />
+      </div>
+    </div>
+  </section>
+</main>

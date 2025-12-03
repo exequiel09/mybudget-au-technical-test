@@ -6,11 +6,15 @@
     "module": "preserve",
     "lib": ["es2020", "dom"],
     "paths": {
+      "@mbau/core": ["./src/app/core/index.ts"],
       "@mbau/dtos": ["./src/app/shared/dtos/index.ts"],
       "@mbau/validators": ["./src/app/shared/validators/index.ts"],
       "@mbau/layout": ["./src/app/layout/index.ts"],
       "@mbau/task-management-feature-task-details": [
         "./src/app/task-management/task-details/feature/index.ts"
+      ],
+      "@mbau/task-management-state": [
+        "./src/app/task-management/shared/state-management/index.ts"
       ],
       "@mbau/task-management-feature-task-listing": [
         "./src/app/task-management/task-list/feature/index.ts"

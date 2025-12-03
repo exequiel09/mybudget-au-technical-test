@@ -1,0 +1,18 @@
+<label for="mbau_sortby_sel" class="form-label col-5 col-sm-4 pt-1 mb-0"
+  >Sort By</label
+>
+
+<div class="col-7 col-sm-8">
+  <select
+    class="form-select"
+    id="mbau_sortby_sel"
+    #sortBySel
+    (change)="handleSortChange(sortBySel.value)"
+  >
+    @for (option of (options | keyvalue); track option.key) {
+    <option [value]="option.key" [selected]="value() === option.key">
+      {{ option.value }}
+    </option>
+    }
+  </select>
+</div>

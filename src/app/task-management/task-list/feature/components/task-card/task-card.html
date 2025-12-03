@@ -1,0 +1,22 @@
+<section class="card">
+  <div class="card-body">
+    <h3 class="card-title">{{ task().title }}</h3>
+  </div>
+
+  <div class="card-body d-flex justify-content-between">
+    @let status = task().status;
+
+    <span
+      class="badge"
+      [class.text-bg-warning]="status === 'in-progress'"
+      [class.text-bg-secondary]="status === 'pending'"
+      [class.text-bg-success]="status === 'done'"
+    >
+      {status, select, pending {Pending} done {Done} other {In Progress}}
+    </span>
+
+    <a [routerLink]="['/details', task().id]" class="btn btn-outline-secondary"
+      >Details</a
+    >
+  </div>
+</section>

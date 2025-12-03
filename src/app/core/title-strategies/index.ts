@@ -1,0 +1,1 @@
+export { DefaultTitleStrategy } from './default';

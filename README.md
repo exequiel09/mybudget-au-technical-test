@@ -6,36 +6,6 @@
 
 [Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `pnpm exec nx graph` to visually explore what was created. Now, let's get you up to speed!
 
-## Generation
-
-This project was bootstrapped using the command:
-
-```shell
-npx create-nx-workspace@latest mybudget-au-technical-test \
-    --preset=angular-standalone \
-    --package-manager=pnpm \
-    --style=scss \
-    --bundler=esbuild \
-    --unitTestRunner=vitest \
-    --skipGit \
-    --ci=skip \
-    --prefix=mbau \
-    --ssr=false \
-    --e2eTestRunner=playwright
-
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/layout/components/navbar/navbar \
-    --skipTests=true
-
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/task-management/task-list/feature/containers/task-list/task-list \
-    --skipTests=true
-
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/task-management/task-details/feature/containers/task-details/task-details \
-    --skipTests=true
-```
-
 ## Installing Packages
 
 To install project dependencies, please use `pnpm`:
@@ -122,6 +92,44 @@ pnpm exec nx g ci-workflow
 Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
 
 [Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Generation
+
+This project was bootstrapped using the command:
+
+```shell
+npx create-nx-workspace@latest mybudget-au-technical-test \
+    --preset=angular-standalone \
+    --package-manager=pnpm \
+    --style=scss \
+    --bundler=esbuild \
+    --unitTestRunner=vitest \
+    --skipGit \
+    --ci=skip \
+    --prefix=mbau \
+    --ssr=false \
+    --e2eTestRunner=playwright
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/layout/components/navbar/navbar \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-list/feature/containers/task-list/task-list \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-details/feature/containers/task-details/task-details \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-list/feature/components/task-card/task-card \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-list/feature/components/sort-control/sort-control \
+    --skipTests=true
+```
 
 ## Useful links
 
