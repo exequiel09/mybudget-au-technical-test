@@ -8,7 +8,19 @@
     "paths": {
       "@mbau/dtos": ["./src/app/shared/dtos/index.ts"],
       "@mbau/validators": ["./src/app/shared/validators/index.ts"],
-      "@mbau/layout": ["./src/app/layout/index.ts"]
+      "@mbau/layout": ["./src/app/layout/index.ts"],
+      "@mbau/task-management-feature-task-details": [
+        "./src/app/task-management/task-details/feature/index.ts"
+      ],
+      "@mbau/task-management-feature-task-listing": [
+        "./src/app/task-management/task-list/feature/index.ts"
+      ],
+      "@mbau/task-management-shell-task-details": [
+        "./src/app/task-management/task-details/shell/index.ts"
+      ],
+      "@mbau/task-management-shell-task-listing": [
+        "./src/app/task-management/task-list/shell/index.ts"
+      ]
     },
     "isolatedModules": true
   },

@@ -23,7 +23,17 @@ npx create-nx-workspace@latest mybudget-au-technical-test \
     --ssr=false \
     --e2eTestRunner=playwright
 
-pnpm exec nx g @nx/angular:component --path=src/app/layout/components/navbar/navbar --style=scss --displayBlock=true --skipTests=true
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/layout/components/navbar/navbar \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-list/feature/containers/task-list/task-list \
+    --skipTests=true
+
+pnpm exec nx g @nx/angular:component \
+    --path=src/app/task-management/task-details/feature/containers/task-details/task-details \
+    --skipTests=true
 ```
 
 ## Installing Packages
