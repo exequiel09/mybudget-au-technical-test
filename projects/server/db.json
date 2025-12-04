@@ -1,1 +1,764 @@
-{}
+{
+  "tasks": [
+    {
+      "id": "a1b2",
+      "title": "Design homepage mockup",
+      "description": "Create initial wireframes and design mockup for the landing page",
+      "status": "done",
+      "created_at": "2025-11-20T09:15:30.000Z",
+      "updated_at": "2025-12-01T14:22:45.123Z"
+    },
+    {
+      "id": "c3d4",
+      "title": "Set up authentication system",
+      "description": "Implement JWT-based authentication with refresh tokens",
+      "status": "done",
+      "created_at": "2025-11-21T10:30:15.000Z",
+      "updated_at": "2025-12-02T11:45:20.456Z"
+    },
+    {
+      "id": "e5f6",
+      "title": "Database schema design",
+      "description": "Design database tables and relationships for task management",
+      "status": "done",
+      "created_at": "2025-11-22T08:45:00.000Z",
+      "updated_at": "2025-12-01T16:30:10.789Z"
+    },
+    {
+      "id": "g7h8",
+      "title": "API endpoint development",
+      "description": "Build REST API endpoints for CRUD operations",
+      "status": "in-progress",
+      "created_at": "2025-11-23T07:20:30.000Z",
+      "updated_at": "2025-12-04T09:15:33.012Z"
+    },
+    {
+      "id": "i9j0",
+      "title": "Frontend components library",
+      "description": "Create reusable React components for common UI elements",
+      "status": "in-progress",
+      "created_at": "2025-11-24T11:00:45.000Z",
+      "updated_at": "2025-12-03T13:45:22.345Z"
+    },
+    {
+      "id": "k1l2",
+      "title": "Unit testing setup",
+      "description": "Configure Jest and set up testing framework",
+      "status": "pending",
+      "created_at": "2025-11-25T09:30:20.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m3n4",
+      "title": "Error handling implementation",
+      "description": "Add comprehensive error handling across the application",
+      "status": "pending",
+      "created_at": "2025-11-26T14:15:00.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o5p6",
+      "title": "Performance optimization",
+      "description": "Optimize database queries and implement caching",
+      "status": "pending",
+      "created_at": "2025-11-27T10:45:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "q7r8",
+      "title": "API documentation",
+      "description": "Write comprehensive API documentation using Swagger/OpenAPI",
+      "status": "pending",
+      "created_at": "2025-11-28T08:20:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s9t0",
+      "title": "User profile page",
+      "description": "Build user profile page with edit capabilities",
+      "status": "in-progress",
+      "created_at": "2025-11-29T12:30:45.000Z",
+      "updated_at": "2025-12-03T15:20:10.678Z"
+    },
+    {
+      "id": "u1v2",
+      "title": "Email notification system",
+      "description": "Implement email notifications for task updates",
+      "status": "pending",
+      "created_at": "2025-11-30T09:45:20.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w3x4",
+      "title": "Mobile responsiveness",
+      "description": "Ensure application is fully responsive on mobile devices",
+      "status": "in-progress",
+      "created_at": "2025-12-01T07:15:30.000Z",
+      "updated_at": "2025-12-03T10:30:45.901Z"
+    },
+    {
+      "id": "y5z6",
+      "title": "Dark mode implementation",
+      "description": "Add dark mode theme toggle to the application",
+      "status": "pending",
+      "created_at": "2025-12-01T11:20:00.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "a7b8",
+      "title": "Search functionality",
+      "description": "Implement full-text search for tasks",
+      "status": "pending",
+      "created_at": "2025-12-01T13:45:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c9d0",
+      "title": "Filter and sort options",
+      "description": "Add advanced filtering and sorting capabilities",
+      "status": "pending",
+      "created_at": "2025-12-02T08:10:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e1f2",
+      "title": "Export to CSV",
+      "description": "Allow users to export tasks to CSV format",
+      "status": "pending",
+      "created_at": "2025-12-02T10:30:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g3h4",
+      "title": "Bulk operations",
+      "description": "Implement bulk update and delete functionality",
+      "status": "pending",
+      "created_at": "2025-12-02T14:20:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i5j6",
+      "title": "Task tagging system",
+      "description": "Add ability to tag tasks for organization",
+      "status": "pending",
+      "created_at": "2025-12-02T15:45:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "k7l8",
+      "title": "Drag and drop reordering",
+      "description": "Implement drag-and-drop to reorder tasks",
+      "status": "pending",
+      "created_at": "2025-12-03T09:20:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m9n0",
+      "title": "Subtasks feature",
+      "description": "Add ability to create subtasks within tasks",
+      "status": "pending",
+      "created_at": "2025-12-03T11:30:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o1p2",
+      "title": "Task dependencies",
+      "description": "Implement task dependency management",
+      "status": "pending",
+      "created_at": "2025-12-03T12:15:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "q3r4",
+      "title": "Calendar view",
+      "description": "Add calendar view for task scheduling",
+      "status": "pending",
+      "created_at": "2025-12-03T14:00:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s5t6",
+      "title": "Analytics dashboard",
+      "description": "Create analytics dashboard with task statistics",
+      "status": "pending",
+      "created_at": "2025-12-03T16:30:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "u7v8",
+      "title": "Activity log",
+      "description": "Implement activity logging for all task changes",
+      "status": "pending",
+      "created_at": "2025-12-03T17:45:20.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w9x0",
+      "title": "User roles and permissions",
+      "description": "Implement role-based access control",
+      "status": "pending",
+      "created_at": "2025-12-04T08:10:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "y1z2",
+      "title": "Team collaboration",
+      "description": "Add team collaboration features and sharing",
+      "status": "pending",
+      "created_at": "2025-12-04T09:25:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "a3b4",
+      "title": "Comments on tasks",
+      "description": "Enable comments and discussions on tasks",
+      "status": "pending",
+      "created_at": "2025-11-25T10:40:00.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c5d6",
+      "title": "Attachment support",
+      "description": "Allow users to attach files to tasks",
+      "status": "pending",
+      "created_at": "2025-11-25T11:55:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e7f8",
+      "title": "Real-time notifications",
+      "description": "Implement WebSocket for real-time updates",
+      "status": "in-progress",
+      "created_at": "2025-11-26T08:30:45.000Z",
+      "updated_at": "2025-12-04T08:45:20.567Z"
+    },
+    {
+      "id": "g9h0",
+      "title": "Backup and restore",
+      "description": "Implement database backup and restore functionality",
+      "status": "pending",
+      "created_at": "2025-11-26T13:20:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i1j2",
+      "title": "Security audit",
+      "description": "Conduct security audit and fix vulnerabilities",
+      "status": "pending",
+      "created_at": "2025-11-27T09:15:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "k3l4",
+      "title": "Load testing",
+      "description": "Perform load testing and optimize for scalability",
+      "status": "pending",
+      "created_at": "2025-11-27T14:30:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m5n6",
+      "title": "Integration testing",
+      "description": "Write comprehensive integration tests",
+      "status": "pending",
+      "created_at": "2025-11-28T10:45:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o7p8",
+      "title": "E2E testing",
+      "description": "Implement end-to-end testing with Cypress",
+      "status": "pending",
+      "created_at": "2025-11-28T15:10:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "q9r0",
+      "title": "Internationalization",
+      "description": "Add multi-language support to the application",
+      "status": "pending",
+      "created_at": "2025-11-29T08:25:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s1t2",
+      "title": "Accessibility improvements",
+      "description": "Improve accessibility compliance (WCAG 2.1)",
+      "status": "done",
+      "created_at": "2025-11-29T11:40:15.000Z",
+      "updated_at": "2025-12-04T10:51:39.205Z"
+    },
+    {
+      "id": "u3v4",
+      "title": "SEO optimization",
+      "description": "Optimize application for search engines",
+      "status": "pending",
+      "created_at": "2025-11-29T13:55:45.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w5x6",
+      "title": "CI/CD pipeline",
+      "description": "Set up continuous integration and deployment",
+      "status": "in-progress",
+      "created_at": "2025-11-30T07:30:20.000Z",
+      "updated_at": "2025-12-02T16:25:30.234Z"
+    },
+    {
+      "id": "y7z8",
+      "title": "Docker containerization",
+      "description": "Containerize application with Docker",
+      "status": "done",
+      "created_at": "2025-12-01T09:10:50.000Z",
+      "updated_at": "2025-12-02T14:15:40.567Z"
+    },
+    {
+      "id": "a9b0",
+      "title": "Kubernetes deployment",
+      "description": "Deploy application on Kubernetes cluster",
+      "status": "pending",
+      "created_at": "2025-12-01T10:25:35.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c1d2",
+      "title": "Monitoring and logging",
+      "description": "Set up application monitoring and centralized logging",
+      "status": "pending",
+      "created_at": "2025-12-01T12:40:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e3f4",
+      "title": "Environment configuration",
+      "description": "Configure different environments (dev, staging, prod)",
+      "status": "pending",
+      "created_at": "2025-12-01T14:55:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g5h6",
+      "title": "Database migration",
+      "description": "Plan and execute database migration strategy",
+      "status": "pending",
+      "created_at": "2025-12-02T09:30:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i7j8",
+      "title": "Cache implementation",
+      "description": "Implement Redis caching layer",
+      "status": "pending",
+      "created_at": "2025-12-02T11:45:55.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "k9l0",
+      "title": "Rate limiting",
+      "description": "Implement API rate limiting",
+      "status": "pending",
+      "created_at": "2025-12-02T13:20:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m1n2",
+      "title": "Request validation",
+      "description": "Add comprehensive request validation middleware",
+      "status": "pending",
+      "created_at": "2025-12-02T16:10:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o3p4",
+      "title": "CORS configuration",
+      "description": "Properly configure Cross-Origin Resource Sharing",
+      "status": "done",
+      "created_at": "2025-12-02T17:35:50.000Z",
+      "updated_at": "2025-12-03T09:40:20.890Z"
+    },
+    {
+      "id": "q5r6",
+      "title": "SSL/TLS setup",
+      "description": "Configure SSL certificates and HTTPS",
+      "status": "done",
+      "created_at": "2025-12-02T18:50:25.000Z",
+      "updated_at": "2025-12-03T10:55:35.123Z"
+    },
+    {
+      "id": "s7t8",
+      "title": "Password hashing",
+      "description": "Implement secure password hashing with bcrypt",
+      "status": "done",
+      "created_at": "2025-12-03T08:15:40.000Z",
+      "updated_at": "2025-12-03T11:20:10.456Z"
+    },
+    {
+      "id": "u9v0",
+      "title": "Input sanitization",
+      "description": "Add input sanitization to prevent XSS attacks",
+      "status": "done",
+      "created_at": "2025-12-03T09:30:55.000Z",
+      "updated_at": "2025-12-03T13:45:25.789Z"
+    },
+    {
+      "id": "w1x2",
+      "title": "SQL injection prevention",
+      "description": "Implement parameterized queries to prevent SQL injection",
+      "status": "done",
+      "created_at": "2025-12-03T10:45:20.000Z",
+      "updated_at": "2025-12-03T14:30:40.234Z"
+    },
+    {
+      "id": "y3z4",
+      "title": "Session management",
+      "description": "Implement secure session management",
+      "status": "in-progress",
+      "created_at": "2025-11-24T08:20:30.000Z",
+      "updated_at": "2025-12-04T07:50:15.678Z"
+    },
+    {
+      "id": "a5b6",
+      "title": "Two-factor authentication",
+      "description": "Add two-factor authentication support",
+      "status": "pending",
+      "created_at": "2025-11-24T09:35:45.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c7d8",
+      "title": "OAuth integration",
+      "description": "Integrate OAuth 2.0 for social login",
+      "status": "pending",
+      "created_at": "2025-11-24T10:50:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e9f0",
+      "title": "API key management",
+      "description": "Implement API key generation and management",
+      "status": "pending",
+      "created_at": "2025-11-24T12:05:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g1h2",
+      "title": "Webhook support",
+      "description": "Add webhook functionality for external integrations",
+      "status": "pending",
+      "created_at": "2025-11-25T07:40:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i3j4",
+      "title": "Third-party integrations",
+      "description": "Integrate with Slack, GitHub, and other services",
+      "status": "pending",
+      "created_at": "2025-11-25T08:55:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "k5l6",
+      "title": "Payment processing",
+      "description": "Integrate Stripe for payment processing",
+      "status": "pending",
+      "created_at": "2025-11-25T10:10:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m7n8",
+      "title": "Subscription management",
+      "description": "Implement subscription and billing management",
+      "status": "pending",
+      "created_at": "2025-11-25T11:25:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o9p0",
+      "title": "Usage tracking",
+      "description": "Track and report user usage metrics",
+      "status": "pending",
+      "created_at": "2025-11-26T07:15:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "q1r2",
+      "title": "Resource cleanup",
+      "description": "Implement resource cleanup and garbage collection",
+      "status": "pending",
+      "created_at": "2025-11-26T09:30:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s3t4",
+      "title": "Error recovery",
+      "description": "Implement automatic error recovery mechanisms",
+      "status": "pending",
+      "created_at": "2025-11-26T10:45:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "u5v6",
+      "title": "Data validation rules",
+      "description": "Define and enforce comprehensive data validation rules",
+      "status": "pending",
+      "created_at": "2025-11-26T12:00:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w7x8",
+      "title": "Soft delete implementation",
+      "description": "Implement soft delete for data archival",
+      "status": "pending",
+      "created_at": "2025-11-26T14:15:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "y9z0",
+      "title": "Audit trail",
+      "description": "Implement comprehensive audit trail logging",
+      "status": "pending",
+      "created_at": "2025-11-27T08:40:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "a1b2",
+      "title": "Data encryption",
+      "description": "Encrypt sensitive data at rest and in transit",
+      "status": "pending",
+      "created_at": "2025-11-27T10:55:35.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c3d4",
+      "title": "Key rotation",
+      "description": "Implement automatic encryption key rotation",
+      "status": "pending",
+      "created_at": "2025-11-27T12:10:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e5f6",
+      "title": "Compliance documentation",
+      "description": "Document compliance with security standards",
+      "status": "pending",
+      "created_at": "2025-11-27T13:25:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g7h8",
+      "title": "Privacy policy updates",
+      "description": "Update privacy policy and terms of service",
+      "status": "pending",
+      "created_at": "2025-11-27T15:40:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i9j0",
+      "title": "Data retention policy",
+      "description": "Implement data retention and deletion policies",
+      "status": "pending",
+      "created_at": "2025-11-28T08:05:45.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "k1l2",
+      "title": "GDPR compliance",
+      "description": "Ensure GDPR compliance throughout the application",
+      "status": "pending",
+      "created_at": "2025-11-28T09:20:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "m3n4",
+      "title": "Request timeout handling",
+      "description": "Implement proper request timeout handling",
+      "status": "pending",
+      "created_at": "2025-11-28T11:35:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "o5p6",
+      "title": "Connection pooling",
+      "description": "Implement database connection pooling",
+      "status": "pending",
+      "created_at": "2025-11-28T12:50:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "q7r8",
+      "title": "Query optimization",
+      "description": "Optimize slow database queries",
+      "status": "pending",
+      "created_at": "2025-11-28T14:05:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s9t0",
+      "title": "Index management",
+      "description": "Create and maintain database indexes",
+      "status": "pending",
+      "created_at": "2025-11-28T16:20:45.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "u1v2",
+      "title": "Denormalization strategy",
+      "description": "Implement denormalization for read performance",
+      "status": "pending",
+      "created_at": "2025-11-29T07:50:10.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w3x4",
+      "title": "Replication setup",
+      "description": "Set up database replication for high availability",
+      "status": "pending",
+      "created_at": "2025-11-29T09:15:20.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "y5z6",
+      "title": "Failover mechanism",
+      "description": "Implement automatic failover for database",
+      "status": "pending",
+      "created_at": "2025-11-29T10:30:35.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "a7b8",
+      "title": "Disaster recovery",
+      "description": "Create disaster recovery plan and procedures",
+      "status": "pending",
+      "created_at": "2025-11-29T12:45:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c9d0",
+      "title": "Incident response",
+      "description": "Define incident response procedures",
+      "status": "pending",
+      "created_at": "2025-11-29T14:00:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e1f2",
+      "title": "Performance metrics",
+      "description": "Define and track key performance metrics",
+      "status": "pending",
+      "created_at": "2025-11-30T08:30:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g3h4",
+      "title": "SLA definition",
+      "description": "Define Service Level Agreements",
+      "status": "pending",
+      "created_at": "2025-11-30T09:45:25.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "i5j6",
+      "title": "Stakeholder communication",
+      "description": "Establish communication plan with stakeholders",
+      "status": "done",
+      "created_at": "2025-11-30T11:00:50.000Z",
+      "updated_at": "2025-12-01T08:15:30.256Z"
+    },
+    {
+      "id": "k7l8",
+      "title": "Training materials",
+      "description": "Create training materials for end users",
+      "status": "done",
+      "created_at": "2025-11-30T12:15:10.000Z",
+      "updated_at": "2025-12-01T09:30:45.567Z"
+    },
+    {
+      "id": "m9n0",
+      "title": "User onboarding flow",
+      "description": "Design and implement user onboarding flow",
+      "status": "in-progress",
+      "created_at": "2025-11-30T13:30:20.000Z",
+      "updated_at": "2025-12-03T16:45:55.890Z"
+    },
+    {
+      "id": "o1p2",
+      "title": "Help documentation",
+      "description": "Write comprehensive help and support documentation",
+      "status": "in-progress",
+      "created_at": "2025-11-30T14:45:35.000Z",
+      "updated_at": "2025-12-03T17:20:10.123Z"
+    },
+    {
+      "id": "q3r4",
+      "title": "FAQ section",
+      "description": "Create FAQ section for common questions",
+      "status": "pending",
+      "created_at": "2025-11-30T16:00:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "s5t6",
+      "title": "Video tutorials",
+      "description": "Create video tutorials for key features",
+      "status": "pending",
+      "created_at": "2025-12-01T08:15:20.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "u7v8",
+      "title": "Knowledge base",
+      "description": "Build knowledge base for self-service support",
+      "status": "pending",
+      "created_at": "2025-12-01T09:30:40.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "w9x0",
+      "title": "Customer feedback system",
+      "description": "Implement system to collect customer feedback",
+      "status": "pending",
+      "created_at": "2025-12-01T10:45:55.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "y1z2",
+      "title": "Bug reporting tool",
+      "description": "Create tool for users to report bugs",
+      "status": "pending",
+      "created_at": "2025-12-01T12:00:15.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "a3b4",
+      "title": "Feature request voting",
+      "description": "Implement feature request voting system",
+      "status": "pending",
+      "created_at": "2025-12-01T13:15:30.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "c5d6",
+      "title": "Product roadmap",
+      "description": "Create and publish product roadmap",
+      "status": "pending",
+      "created_at": "2025-12-01T14:30:45.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "e7f8",
+      "title": "Release notes",
+      "description": "Write comprehensive release notes for each version",
+      "status": "pending",
+      "created_at": "2025-12-01T15:45:50.000Z",
+      "updated_at": null
+    },
+    {
+      "id": "g9h0",
+      "title": "Version management",
+      "description": "Implement semantic versioning",
+      "status": "pending",
+      "created_at": "2025-12-01T17:00:10.000Z",
+      "updated_at": null
+    }
+  ]
+}
