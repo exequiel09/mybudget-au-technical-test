@@ -20,11 +20,7 @@
     <div class="row mt-3">
       @for (task of tasksStore.currentPageItems(); track task.id; let first =
       $first) {
-      <div
-        class="col-12 col-md-6 col-lg-4"
-        [class.gy-3]="!first"
-        [class.gy-md-0]="tasksStore.currentPageItems().length < 3"
-      >
+      <div class="col-12 col-md-6 col-lg-4 gy-3">
         <mbau-task-card [task]="task" />
       </div>
       }
