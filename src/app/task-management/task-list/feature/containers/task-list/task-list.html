@@ -18,12 +18,17 @@
     </div>
 
     <div class="row mt-3">
-      @for (task of tasksStore.currentPageItems(); track task.id; let first =
-      $first) {
+      @let listingResourceStatus = tasksStore.listingResource.status(); @switch
+      (listingResourceStatus) { @case('error') {
+      <p class="text-center mt-3">
+        There are no tasks. Try adding one by clicking the "Add Task" button.
+      </p>
+      } @default { @for (task of tasksStore.currentPageItems(); track task.id;
+      let first = $first) {
       <div class="col-12 col-md-6 col-lg-4 gy-3">
         <mbau-task-card [task]="task" />
       </div>
-      }
+      } } }
     </div>
 
     @if (tasksStore.totalPages() > 1) {

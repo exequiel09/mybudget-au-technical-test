@@ -165,12 +165,15 @@ export const TasksStore = signalStore(
               });
             }),
 
-            catchError(() => {
+            catchError((error) => {
               store._toastsService.show({
                 message: 'Unable to add task. Please try again later',
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
+
+              // This should be logged somewhere for now, just log it in the console
+              console.error(error);
 
               return EMPTY;
             })
@@ -193,12 +196,15 @@ export const TasksStore = signalStore(
               });
             }),
 
-            catchError(() => {
+            catchError((error) => {
               store._toastsService.show({
                 message: 'Unable to delete the task. Please try again later',
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
+
+              // This should be logged somewhere for now, just log it in the console
+              console.error(error);
 
               return EMPTY;
             })
@@ -260,6 +266,36 @@ export const TasksStore = signalStore(
           const value = store._detailsResource.value();
 
           patchState(store, addEntity(value, tasksEntityConfig));
+        }
+      });
+
+      effect(() => {
+        const error = store._listingResource.error();
+
+        if (typeof error !== 'undefined') {
+          store._toastsService.show({
+            message: 'Failed to fetch tasks. Please try again later',
+            classname: 'bg-danger text-light',
+            delay: 3000,
+          });
+
+          // This should be logged somewhere for now, just log it in the console
+          console.error(error);
+        }
+      });
+
+      effect(() => {
+        const error = store._detailsResource.error();
+
+        if (typeof error !== 'undefined') {
+          store._toastsService.show({
+            message: 'Failed to fetch task detail. Please try again later',
+            classname: 'bg-danger text-light',
+            delay: 3000,
+          });
+
+          // This should be logged somewhere for now, just log it in the console
+          console.error(error);
         }
       });
     },
