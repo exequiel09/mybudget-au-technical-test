@@ -38,7 +38,7 @@ export const tasksEntityConfig = entityConfig({
   selectId: selectTaskId,
 });
 
-const DEFAULT_PAGE_SIZE = 2;
+const DEFAULT_PAGE_SIZE = 10;
 
 export const TasksStore = signalStore(
   { providedIn: 'root' },
