@@ -1,7 +1,7 @@
 <section aria-labelledby="task-form-title">
   <h2 id="task-form-title">@if (task()) { Edit Task } @else { New Task }</h2>
   <form (submit)="handleSubmit($event)">
-    <div class="mb-3">
+    <div class="mb-3" data-testid="task-form_title__control">
       <label for="mbau_task-title_txt" class="form-label">Title</label>
       <input
         type="text"
@@ -16,13 +16,13 @@
       }
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" data-testid="task-form_description__control">
       <label for="mbau_task-description_ta" class="form-label"
         >Description</label
       >
       <textarea
         class="form-control"
-        id="description_ta"
+        id="mbau_task-description_ta"
         rows="3"
         [field]="form.description"
         [class.is-invalid]="isDescriptionInvalid()"
@@ -34,12 +34,12 @@
       }
     </div>
 
-    <div class="mb-3">
-      <label for="mbau_task-status_ta" class="form-label">Status</label>
+    <div class="mb-3" data-testid="task-form_status__control">
+      <label for="mbau_task-status_sel" class="form-label">Status</label>
 
       <select
         class="form-select form-select-sm"
-        id="mbau_task-status_ta"
+        id="mbau_task-status_sel"
         [field]="form.status"
         [class.is-invalid]="isStatusInvalid()"
       >

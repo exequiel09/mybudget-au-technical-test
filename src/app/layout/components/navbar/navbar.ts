@@ -3,12 +3,11 @@ import {
   Component,
   inject,
   model,
-  type Signal,
 } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { filter, map, Subject, take, tap, throttleTime } from 'rxjs';
+import { Subject, tap, throttleTime } from 'rxjs';
 
 export type NavbarControl = 'search' | 'back';
 
@@ -20,8 +19,7 @@ export type NavbarControl = 'search' | 'back';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Navbar {
-  readonly searchQuery: Signal<string>;
-
+  readonly searchQuery = model('');
   readonly visibleControl = model<NavbarControl>('search');
 
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -30,19 +28,6 @@ export class Navbar {
   private readonly _search$ = new Subject<string>();
 
   constructor() {
-    this.searchQuery = toSignal(
-      this._activatedRoute.queryParams.pipe(
-        map((params) => params['search'] ?? ''),
-
-        filter((query) => query !== ''),
-
-        take(1)
-      ),
-      {
-        initialValue: '',
-      }
-    );
-
     this._search$
       .asObservable()
       .pipe(
@@ -54,6 +39,7 @@ export class Navbar {
             queryParamsHandling: 'merge',
             queryParams: {
               search: value,
+              page: 1,
             },
           });
         }),

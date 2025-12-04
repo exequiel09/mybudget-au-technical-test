@@ -110,9 +110,7 @@ npx create-nx-workspace@latest mybudget-au-technical-test \
     --ssr=false \
     --e2eTestRunner=playwright
 
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/layout/components/navbar/navbar \
-    --skipTests=true
+pnpm exec nx g @nx/angular:component --path=src/app/layout/components/navbar/navbar
 
 pnpm exec nx g @nx/angular:component \
     --path=src/app/task-management/task-list/feature/containers/task-list/task-list \
@@ -130,17 +128,11 @@ pnpm exec nx g @nx/angular:component \
     --path=src/app/task-management/task-list/feature/components/sort-control/sort-control \
     --skipTests=true
 
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/ui-kit/status-badge/status-badge \
-    --skipTests=true
+pnpm exec nx g @nx/angular:component --path=src/app/ui-kit/status-badge/status-badge
 
-pnpm exec nx g @nx/angular:directive \
-    --path=src/app/layout/directives/router-based-control \
-    --skipTests=true
+pnpm exec nx g @nx/angular:directive --path=src/app/layout/directives/router-based-control
 
-pnpm exec nx g @nx/angular:component \
-    --path=src/app/ui-kit/task-form/task-form \
-    --skipTests=true
+pnpm exec nx g @nx/angular:component --path=src/app/ui-kit/task-form/task-form
 ```
 
 ## Useful links
