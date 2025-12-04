@@ -1,23 +1,23 @@
 import { minLength, required, schema } from '@angular/forms/signals';
 
 import type { RawTask } from '@mbau/dtos';
+import {
+  TASK_DESCRIPTION_MIN_LENGTH,
+  TASK_TITLE_MIN_LENGTH,
+} from '@mbau/validators';
 
 export const taskTitleSchema = schema<RawTask['title']>((title) => {
-  const minChar = 5;
-
   required(title, { message: 'Title is required' });
-  minLength(title, minChar, {
-    message: `Title should be minimum of ${minChar} characters`,
+  minLength(title, TASK_TITLE_MIN_LENGTH, {
+    message: `Title should be minimum of ${TASK_TITLE_MIN_LENGTH} characters`,
   });
 });
 
 export const taskDescriptionSchema = schema<RawTask['description']>(
   (description) => {
-    const minChar = 20;
-
     required(description, { message: 'Description is required' });
-    minLength(description, minChar, {
-      message: `Description should be minimum of ${minChar} characters`,
+    minLength(description, TASK_DESCRIPTION_MIN_LENGTH, {
+      message: `Description should be minimum of ${TASK_DESCRIPTION_MIN_LENGTH} characters`,
     });
   }
 );
