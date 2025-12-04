@@ -13,7 +13,7 @@
       "options": {
         "outputPath": "dist/mybudget-au-technical-test",
         "browser": "./src/main.ts",
-        "polyfills": ["@angular/localize/init", "zone.js"],
+        "polyfills": ["@angular/localize/init"],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

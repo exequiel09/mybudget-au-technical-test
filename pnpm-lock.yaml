@@ -38,9 +38,6 @@ importers:
       zod:
         specifier: ^4.1.13
         version: 4.1.13
-      zone.js:
-        specifier: ~0.15.0
-        version: 0.15.1
     devDependencies:
       '@analogjs/vite-plugin-angular':
         specifier: ~2.1.2
@@ -14990,4 +14987,5 @@ snapshots:
 
   zod@4.1.13: {}
 
-  zone.js@0.15.1: {}
+  zone.js@0.15.1:
+    optional: true
