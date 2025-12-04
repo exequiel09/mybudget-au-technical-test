@@ -7,9 +7,11 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { form, Field, required, minLength } from '@angular/forms/signals';
+import { form, Field, required, apply } from '@angular/forms/signals';
 
 import type { RawTask, Task } from '@mbau/dtos';
+
+import { taskDescriptionSchema, taskTitleSchema } from './validators';
 
 @Component({
   selector: 'mbau-task-form',
@@ -30,15 +32,8 @@ export class TaskForm {
   });
 
   readonly form = form(this.taskModel, (schemaPath) => {
-    required(schemaPath.title, { message: 'Title is required' });
-    minLength(schemaPath.title, 5, {
-      message: 'Title should be minimum of 5 characters',
-    });
-
-    required(schemaPath.description, { message: 'Description is required' });
-    minLength(schemaPath.description, 20, {
-      message: 'Title should be minimum of 20 characters',
-    });
+    apply(schemaPath.title, taskTitleSchema);
+    apply(schemaPath.description, taskDescriptionSchema);
 
     required(schemaPath.status, { message: 'Status is required' });
   });
