@@ -1,5 +1,7 @@
 <section aria-labelledby="task-form-title">
-  <h2 id="task-form-title">@if (task()) { Edit Task } @else { New Task }</h2>
+  <h2 id="task-form-title" class="fs-5">
+    @if (task()) { Edit Task } @else { New Task }
+  </h2>
   <form (submit)="handleSubmit($event)">
     <div class="mb-3" data-testid="task-form_title__control">
       <label for="mbau_task-title_txt" class="form-label">Title</label>
