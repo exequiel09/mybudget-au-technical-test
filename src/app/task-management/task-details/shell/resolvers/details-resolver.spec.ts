@@ -1,7 +1,9 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
+import { ApplicationRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import {
   convertToParamMap,
@@ -18,8 +20,6 @@ import type { Task } from '@mbau/dtos';
 import { TasksStore } from '@mbau/task-management-state';
 
 import { taskResolver } from './details-resolver';
-import { ApplicationRef } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
 
 const task: Task = {
   id: '1',
